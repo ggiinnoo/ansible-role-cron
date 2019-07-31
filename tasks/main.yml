@@ -1,0 +1,12 @@
+---
+
+# Check crond installation first
+- name: Run checks
+  include_tasks: checks.yml
+
+# run install when crond package cannot be found
+- name: Running installation file
+  include_tasks: install.yml
+
+- name: Run configure file
+  include_tasks: configure.yml

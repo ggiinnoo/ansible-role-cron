@@ -1,0 +1,28 @@
+---
+language: python
+services: docker
+
+env:
+  global:
+    - ROLE_NAME: cron
+  matrix:
+    - MOLECULE_DISTRO: centos6
+    - MOLECULE_DISTRO: centos7
+
+install:
+  - pip install molecule docker
+
+before_script:
+  - cd ../
+  - mv ansible-role-$ROLE_NAME $ROLE_NAME
+  - cd $ROLE_NAME
+
+script:
+  - molecule test
+
+branches:
+  only:
+    - release/1.0.x
+    - /^feature-.*$/
+  except:
+    - /^testing-.*$/

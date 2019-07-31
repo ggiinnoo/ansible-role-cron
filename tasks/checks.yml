@@ -1,0 +1,6 @@
+---
+
+# Get all installed packages to use in the installation task
+- name: Gather installed packages
+  package_facts:
+    manager: auto

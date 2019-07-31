@@ -1,0 +1,6 @@
+---
+
+# these items needs to be installed on centos type servers
+installCentos:
+  - "cronie"
+  - "cronie-anacron"
