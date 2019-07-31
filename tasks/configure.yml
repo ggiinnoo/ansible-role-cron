@@ -33,16 +33,17 @@
 
 - name: Set cronjobs
   cron:
+    user: "{{ item.0.name }}"
+    job: "{% if item.1.flock|default(true) -%}/usr/bin/flock -w 0 '/tmp/cron_{{ item.0.name }}_{{ item.1.name|replace(' ', '_') }}.lock' -c '{{ item.1.job }}'{% else %}{{ item.1.job }}{% endif %}"
     name: "{{ item.1.name }}"
     minute: "{{ item.1.minute|default('*') }}"
     hour: "{{ item.1.hour|default('*') }}"
     day: "{{ item.1.day|default('*') }}"
     month: "{{ item.1.month|default('*') }}"
     weekday: "{{ item.1.weekday|default('*') }}"
-    user: "{{ item.0.name }}"
-    job: "{% if item.1.flock|default(true) -%}/usr/bin/flock -w 0 '/tmp/cron_{{ item.0.name }}_{{ item.1.name|replace(' ', '_') }}.lock' -c '{{ item.1.job }}'{% else %}{{ item.1.job }}{% endif %}"
     state: "{{ item.1.state|default('present') }}"
     disabled: "{{ item.1.disabled|default(false) }}"
+    reboot: "{{ item.1.reboot|default(false) }}"
   with_subelements:
     - "{{ crons }}"
     - tasks
