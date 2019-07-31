@@ -11,3 +11,20 @@
 
   roles:
     - cron
+  vars:
+    crons:
+      - name: root
+        mailto: "contact@ginojansen.nl"
+        path: "/bin:/usr/bin:/usr/local/bin"
+        cronvars:
+          - name: CRONKEY
+            value: "SuperSecretKey"
+        tasks:
+          - name: facebook_export
+            job: /usr/bin/curl --silent "https://www.ginojansen.nl/cron_facebook.php?key=$CRONKEY" &> /dev/null
+            minute: "30"
+            hour: "12"
+          - name: google_export
+            job: /usr/bin/curl --silent "https://www.ginojansen.nl/cron_google.php?key=$CRONKEY" &> /dev/null
+            minute: "45"
+            hour: "12"
