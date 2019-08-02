@@ -1,5 +1,6 @@
 ---
 galaxy_info:
+  role_name: cron
   author: Gino Jansen
   description: Installing and managing cron's
   license: license (BSD, MIT)
