@@ -1,4 +1,4 @@
-Cron installation
+Cron installation [![Build Status](https://travis-ci.com/ggiinnoo/ansible-role-cron.svg?token=FRf7smb1b771zgTe7o8a&branch=release/1.0.x)](https://travis-ci.com/ggiinnoo/ansible-role-cron)
 =========
 
 Configure different cron's
