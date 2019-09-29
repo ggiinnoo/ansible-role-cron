@@ -15,7 +15,9 @@ jobs:
         uses: actions/checkout@v1
         with:
           fetch-depth: 1
+      - name: install wheel
+        run: pip install wheel
       - name: install required modules
-        run: pip install wheel molecule docker
+        run: pip install molecule docker
       - name: run molecule
         run: molecule test
