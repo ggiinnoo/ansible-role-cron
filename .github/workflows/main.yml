@@ -17,7 +17,11 @@ jobs:
           fetch-depth: 1
       - name: install wheel
         run: pip install wheel
+      - name: run molecule
+        run: molecule test
       - name: install required modules
-        run: pip install molecule docker && molecule --version
+        run: pip install molecule docker
+      - name: install mlocate
+        run: apt install mlocate && updatedb && locate molecule
       - name: run molecule
         run: molecule test
