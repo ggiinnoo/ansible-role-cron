@@ -1,15 +1,15 @@
 ---
 name: Ansible role cron
-on: push
 
-strategy:
-  matrix:
-    centos: [6, 7]
+on: push
 
 jobs:
   build:
     name: Build for ${{ centos }}
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        centos: [6, 7]
     steps:
       - name: Checkout code
         uses: actions/checkout@v1
