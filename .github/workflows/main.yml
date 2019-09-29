@@ -20,6 +20,6 @@ jobs:
       - name: install required modules
         run: pip install molecule docker
       - name: install mlocate
-        run: apt update && apt install mlocate && updatedb && locate molecule
+        run: ls /usr/local/bin/ && pip --version
       - name: run molecule
         run: molecule test
