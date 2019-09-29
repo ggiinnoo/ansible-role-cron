@@ -1,0 +1,25 @@
+---
+name: Ansible role cron
+on: push:
+    branches:
+      - centos6
+      - centos7
+
+runs-on: ubuntu-latest
+
+strategy:
+  matrix:
+    centos: [6, 7]
+
+jobs:
+  build:
+    name: Build for ${{ centos }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+        with:
+        fetch-depth: 1
+      - name: install required modules
+        run: pip install molecule docker
+      - name: run molecule
+        run: molecule test
