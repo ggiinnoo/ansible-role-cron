@@ -18,6 +18,6 @@ jobs:
       - name: install wheel
         run: pip install wheel
       - name: install required modules
-        run: pip install molecule docker
+        run: pip install molecule docker && molecule --version
       - name: run molecule
         run: molecule test
