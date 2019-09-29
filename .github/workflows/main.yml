@@ -14,7 +14,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v1
         with:
-        fetch-depth: 1
+          fetch-depth: 1
       - name: install required modules
         run: pip install molecule docker
       - name: run molecule
