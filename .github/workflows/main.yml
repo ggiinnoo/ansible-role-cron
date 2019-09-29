@@ -5,7 +5,7 @@ on: push
 
 jobs:
   build:
-    name: Build for ${{ centos }}
+    name: Build for centos
     runs-on: ubuntu-latest
     strategy:
       matrix:
