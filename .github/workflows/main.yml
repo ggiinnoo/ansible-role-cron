@@ -1,9 +1,6 @@
 ---
 name: Ansible role cron
-on: push:
-    branches:
-      - centos6
-      - centos7
+on: push
 
 runs-on: ubuntu-latest
 
