@@ -15,11 +15,9 @@ jobs:
         uses: actions/checkout@v1
         with:
           fetch-depth: 1
+      - name: Installing prerequisites
+        run: sudo apt-get install -y python-pip libssl-dev ya
       - name: install required modules
-        run: python -m pip install molecule docker
-      - name: pip
-        run: python -m pip list && python -m pip --version
-      - name: ansible and docker version
-        run: ansible --version && docker -v
+        run: pip install --upgrade --user setuptools && pip install --user molecule docker yamllint
       - name: run molecule
         run: python -m molecule test
