@@ -3,8 +3,8 @@ name: Ansible role cron
 
 on:
   push:
-    branches:    
-    - 'release/**'
+    branches:
+      - 'release/**'
 
 jobs:
   build:
