@@ -26,4 +26,4 @@ jobs:
       - name: ansible and docker version
         run: ansible --version && docker -v
       - name: run molecule
-        run: molecule test
+        run: /home/runner/.local/lib/python2.7/site-packages/molecule test
