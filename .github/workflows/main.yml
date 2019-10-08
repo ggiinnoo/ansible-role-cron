@@ -16,9 +16,9 @@ jobs:
         with:
           fetch-depth: 1
       - name: install required modules
-        run: pip install molecule docker
+        run: python -m pip install molecule docker
       - name: pip
-        run: pip list && pip --version
+        run: python -m pip list && python -m pip --version
       - name: ansible and docker version
         run: ansible --version && docker -v
       - name: run molecule
