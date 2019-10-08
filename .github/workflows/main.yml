@@ -16,7 +16,7 @@ jobs:
         with:
           fetch-depth: 1
       - name: install preq
-        run: apt-get install gcc python-pip python-vagrant libssl-dev libffi-dev
+        run: sudo apt-get install gcc python-pip python-vagrant libssl-dev libffi-dev
       - name: install wheel
         run: pip install wheel
       - name: install required modules
