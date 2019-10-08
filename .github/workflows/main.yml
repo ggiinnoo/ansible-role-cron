@@ -1,7 +1,10 @@
 ---
 name: Ansible role cron
 
-on: push
+on:
+  push:
+    branches:    
+    - 'release/**'
 
 jobs:
   build:
@@ -17,8 +20,8 @@ jobs:
           fetch-depth: 1
       - name: Installing prerequisites
         run: sudo apt-get install -y python-pip libssl-dev yamllint flake8
-      - run: pip install --user wheel ansible-lint
+      - run: pip install --user wheel
       - name: installing required python modules
-        run: pip install --upgrade --user setuptools && pip install --user molecule docker 
+        run: pip install --upgrade --user setuptools && pip install --user molecule docker ansible-lint
       - name: run molecule
         run: python -m molecule test
