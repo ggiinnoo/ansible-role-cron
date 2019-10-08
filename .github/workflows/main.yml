@@ -16,7 +16,7 @@ jobs:
         with:
           fetch-depth: 1
       - name: Installing prerequisites
-        run: sudo apt-get install -y python-pip libssl-dev ya
+        run: sudo apt-get install -y python-pip libssl-dev
       - name: install required modules
         run: pip install --upgrade --user setuptools && pip install --user molecule docker yamllint
       - name: run molecule
