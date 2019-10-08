@@ -15,10 +15,6 @@ jobs:
         uses: actions/checkout@v1
         with:
           fetch-depth: 1
-      - name: install preq
-        run: sudo apt-get install gcc python-pip libssl-dev libffi-dev
-      - name: install wheel
-        run: pip install wheel
       - name: install required modules
         run: pip install molecule docker
       - name: pip
