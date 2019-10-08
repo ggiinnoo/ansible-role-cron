@@ -23,5 +23,7 @@ jobs:
         run: pip install molecule docker
       - name: pip
         run: pip list && pip --version
+      - name: ansible and docker version
+        run: ansible --version && docker -v
       - name: run molecule
         run: molecule test
