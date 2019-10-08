@@ -24,4 +24,4 @@ jobs:
       - name: pip
         run: pip list && pip --version
       - name: run molecule
-        run: /usr/local/bin/molecule test
+        run: molecule test
