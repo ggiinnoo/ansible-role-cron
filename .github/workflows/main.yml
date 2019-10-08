@@ -16,8 +16,8 @@ jobs:
         with:
           fetch-depth: 1
       - name: Installing prerequisites
-        run: sudo apt-get install -y python-pip libssl-dev yamllint flake8 ansible-lint
-      - run: pip install --user wheel
+        run: sudo apt-get install -y python-pip libssl-dev yamllint flake8
+      - run: pip install --user wheel ansible-lint
       - name: installing required python modules
         run: pip install --upgrade --user setuptools && pip install --user molecule docker 
       - name: run molecule
