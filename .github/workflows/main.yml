@@ -22,4 +22,4 @@ jobs:
       - name: ansible and docker version
         run: ansible --version && docker -v
       - name: run molecule
-        run: molecule test
+        run: python -m molecule test
