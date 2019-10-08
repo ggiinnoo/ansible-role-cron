@@ -18,6 +18,6 @@ jobs:
       - name: Installing prerequisites
         run: sudo apt-get install -y python-pip libssl-dev
       - name: install required modules
-        run: pip install --upgrade --user setuptools && pip install --user molecule docker yamllint
+        run: pip install --upgrade --user setuptools && pip install --user wheel molecule docker yamllint
       - name: run molecule
         run: python -m molecule test
