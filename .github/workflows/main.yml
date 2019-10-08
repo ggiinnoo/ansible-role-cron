@@ -6,7 +6,7 @@ on: push
 jobs:
   build:
     name: Build for centos
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-16.04
     strategy:
       matrix:
         centos: [6, 7]
