@@ -4,7 +4,7 @@ name: Ansible role cron
 on:
   push:
     branches:
-      - 'release/**'
+     -  'release/**'
 
 jobs:
   build:
@@ -24,4 +24,4 @@ jobs:
       - name: installing required python modules
         run: pip install --upgrade --user setuptools && pip install --user molecule docker ansible-lint
       - name: run molecule
-        run: python -m molecule test
+        run: python -m molecule --debug test
