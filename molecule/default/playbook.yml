@@ -10,7 +10,7 @@
       changed_when: false
 
   roles:
-    - cron
+    - ansible-role-cron
   vars:
     crons:
       - name: root
