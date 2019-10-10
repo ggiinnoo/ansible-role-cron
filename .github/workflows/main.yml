@@ -28,7 +28,7 @@ jobs:
           pip install yamllint molecule docker ansible-lint
       - name: DEBUG
         env:
-          MATRIX_CONTEXT: ${{ matrix }}
+          MATRIX_CONTEXT: ${{ matrix.centos }}
         run: echo "$MATRIX_CONTEXT"
       # - name: run molecule
       #   run: molecule test
