@@ -29,6 +29,9 @@ jobs:
       - name: DEBUG
         env:
           MATRIX_CONTEXT: ${{ toJson(matrix) }}
-        run: echo "$MATRIX_CONTEXT"
+          MATRIX_CONTEXT2: ${{ matrix }}
+        run: |
+          echo "$MATRIX_CONTEXT"
+          echo "$MATRIX_CONTEXT2"
       # - name: run molecule
       #   run: molecule test
