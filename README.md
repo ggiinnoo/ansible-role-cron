@@ -1,20 +1,17 @@
-Cron installation [![Actions Status](https://github.com/ggiinnoo/ansible-role-cron/workflows/.github/workflows/main.yml/badge.svg)](https://github.com/ggiinnoo/ansible-role-cron/actions)
+Cron installation [![Actions Status](https://github.com/ggiinnoo/ansible-role-cron/workflows/Ansible%20role%20cron/badge.svg)](https://github.com/ggiinnoo/ansible-role-cron/actions)
 =========
-
-
-
 
 Configure different cron's
 
 Requirements
 ------------
 
-This playbook is tested on centos 6 and 7. Others are on the way
+This playbook is tested on centos 6, 7 and 8. Others are on the way
 
 Role Variables
 --------------
 
-There is only 1 big variable. This variable is not set in the defaults/main.yml so you need to place it somewhere.
+There is only 1 big array. This array is not set in the defaults/main.yml so you need to place it somewhere.
 
 It's gonna look something like:
 
