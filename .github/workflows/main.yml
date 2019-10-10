@@ -27,4 +27,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install yamllint molecule docker ansible-lint
       - name: run molecule
+        if: matrix.centos == "centos6"
+        env:
+          OS_VERSION: centos6
+        run: molecule test
+      - name: run molecule
+        if: matrix.centos == "centos7"
+        env:
+          OS_VERSION: centos7
         run: molecule test
