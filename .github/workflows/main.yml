@@ -28,10 +28,7 @@ jobs:
           pip install yamllint molecule docker ansible-lint
       - name: DEBUG
         env:
-          MATRIX_CONTEXT: ${{ toJson(matrix) }}
-          MATRIX_CONTEXT2: ${{ matrix }}
-        run: |
-          echo "$MATRIX_CONTEXT"
-          echo "$MATRIX_CONTEXT2"
+          MATRIX_CONTEXT: ${{ matrix }}
+        run: echo "$MATRIX_CONTEXT"
       # - name: run molecule
       #   run: molecule test
