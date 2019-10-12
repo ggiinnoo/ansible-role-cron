@@ -9,7 +9,9 @@ lint:
     config-file: molecule/default/yaml-lint.yml
 platforms:
   - name: instance
-    image: "docker.pkg.github.com/ggiinnoo/docker-ansible/${DOCKER_IMAGE}:latest"
+    image: "docker.pkg.github.com/ggiinnoo/docker-ansible/${{ DOCKER_IMAGE }}:latest"
+    registry:
+      url: docker.pkg.github.com
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
@@ -20,6 +22,7 @@ platforms:
       - dbservers
 provisioner:
   name: ansible
+  log: true
   lint:
     name: ansible-lint
   playbooks:
