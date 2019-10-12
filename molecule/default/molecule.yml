@@ -9,10 +9,9 @@ lint:
     config-file: molecule/default/yaml-lint.yml
 platforms:
   - name: instance
-    image: "ggiinnoo/docker-ansible:${DOCKER_IMAGE}-latest"
-    command: ${MOLECULE_DOCKER_COMMAND:-""}
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    image: "ggiinnoo/docker-ansible/${DOCKER_IMAGE}:latest"
+    registry:
+      url: docker.pkg.github.com
     privileged: true
     pre_build_image: true
     groups:
