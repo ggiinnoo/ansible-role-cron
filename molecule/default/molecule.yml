@@ -12,6 +12,9 @@ platforms:
     image: "docker.pkg.github.com/ggiinnoo/docker-ansible/${DOCKER_IMAGE}:latest"
     registry:
       url: docker.pkg.github.com
+      credentials:
+        username: ${DOCKER_USERNAME}
+        password: 'supersecrettest'
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
