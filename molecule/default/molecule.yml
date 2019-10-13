@@ -14,7 +14,7 @@ platforms:
       url: docker.pkg.github.com
       credentials:
         username: ${DOCKER_USERNAME}
-        password: 'supersecrettest'
+        password: ${DOCKER_PASSWORD}
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
