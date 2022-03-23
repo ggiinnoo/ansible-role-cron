@@ -5,8 +5,8 @@
     name: "{{ item }}"
     state: "installed"
   with_items:
-    - "{{ installCentos }}"
+    - "{{ redhatPackages }}"
   when:
-    - '"item" != ansible_facts.packages'
+    - item not in ansible_facts.packages
   loop_control:
     label: "Installing package: {{ item }}"
