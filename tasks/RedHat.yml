@@ -1,11 +1,7 @@
 ---
 
-- name: Cron | RedHat | Installing nginx
+- name: Cron | RedHat | Installing cron
   include_tasks: RedHat/install.yml
-  when:
-    - redhatPackages not in ansible_facts.packages
 
-- name: Cron | RedHat | Configure nginx
+- name: Cron | RedHat | Configure cron
   include_tasks: RedHat/configure.yml
-  when:
-    - redhatPackages in ansible_facts.packages
