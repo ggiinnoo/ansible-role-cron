@@ -1,3 +1,4 @@
 ---
 
-debianPackages: "systemd-cron"
+debianPackages:
+  - "systemd-cron"
