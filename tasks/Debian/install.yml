@@ -12,8 +12,12 @@
   loop_control:
     label: "Installing package: {{ item }}"
 
+- name: Cron | Debian | Daemon reload
+  command: "systemctl daemon-reload"
+  register: cronDaemonReload
+  changed_when: cronDaemonReload.rc == 2
+
 - name: Cron | Debian | Unmask cron service
   systemd:
     name: "cron"
     masked: false
-    daemon_reload: true
