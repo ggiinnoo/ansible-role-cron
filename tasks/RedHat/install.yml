@@ -1,0 +1,12 @@
+---
+
+- name: Cron | Redhat | Install required packages
+  yum:
+    name: "{{ item }}"
+    state: "installed"
+  with_items:
+    - "{{ redhatPackages }}"
+  when:
+    - item not in ansible_facts.packages
+  loop_control:
+    label: "Installing package: {{ item }}"

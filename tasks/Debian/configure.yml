@@ -1,0 +1,58 @@
+---
+
+- name: Cron | Debian | Set PATH env variable when defined
+  cron:
+    name: PATH
+    value: "{{ item.path }}"
+    user: "{{ item.name }}"
+    env: true
+  loop: "{{ crons }}"
+  when: item.path|default(false)
+  loop_control:
+    label: "Setting PATH variable: {{ item.path }}"
+
+- name: Cron | Debian | Set MAILTO env variable when defined
+  cron:
+    name: MAILTO
+    value: "{{ item.mailto }}"
+    user: "{{ item.name }}"
+    env: true
+  loop: "{{ crons }}"
+  when: item.mailto|default(false)
+  loop_control:
+    label: "Setting MAILTO variable: {{ item.mailto }}"
+
+- name: Cron | Debian | Set custom env variable's when defined
+  cron:
+    name: "{{ item.1.name }}"
+    value: "{{ item.1.value }}"
+    user: "{{ item.0.name }}"
+    state: "{{ item.1.state|default('present') }}"
+    env: true
+  with_subelements:
+    - "{{ crons }}"
+    - cronvars
+    - flags:
+      skip_missing: true
+  loop_control:
+    label: "Setting custom env variable: {{ item.1.name }}"
+
+- name: Cron | Debian | Set cronjobs
+  cron:
+    user: "{{ item.0.name }}"
+    job: "{% if item.1.flock|default(true) -%}/usr/bin/flock -w 0 '/tmp/cron_{{ item.0.name }}_{{ item.1.name|replace(' ', '_') }}.lock' -c '{{ item.1.job }}'{% else %}{{ item.1.job }}{% endif %}"
+    name: "{{ item.1.name }}"
+    minute: "{{ item.1.minute|default('*') }}"
+    hour: "{{ item.1.hour|default('*') }}"
+    day: "{{ item.1.day|default('*') }}"
+    month: "{{ item.1.month|default('*') }}"
+    weekday: "{{ item.1.weekday|default('*') }}"
+    state: "{{ item.1.state|default('present') }}"
+    disabled: "{{ item.1.disabled|default(false) }}"
+  with_subelements:
+    - "{{ crons }}"
+    - tasks
+    - flags:
+      skip_missing: true
+  loop_control:
+    label: "Setting cron: '{{ item.1.name }}' for user: '{{ item.0.name }}'"

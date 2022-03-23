@@ -1,0 +1,20 @@
+---
+
+- name: Cron | Debian | Install required packages
+  apt:
+    name: "{{ item }}"
+    state: "present"
+    update_cache: true
+  with_items:
+    - "{{ debianPackages }}"
+  when:
+    - item not in ansible_facts.packages
+  loop_control:
+    label: "Installing package: {{ item }}"
+
+- name: Cron | Debian | Unmask & start cron service
+  systemd:
+    name: "cron"
+    masked: false
+    state: started
+    daemon_reload: true

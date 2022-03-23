@@ -1,0 +1,7 @@
+---
+
+- name: Cron | RedHat | Installing cron
+  include_tasks: RedHat/install.yml
+
+- name: Cron | RedHat | Configure cron
+  include_tasks: RedHat/configure.yml
