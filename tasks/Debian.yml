@@ -1,0 +1,7 @@
+---
+
+- name: Cron | Debian | Installing cron
+  include_tasks: Debian/install.yml
+
+- name: Cron | Debian | Configure cron
+  include_tasks: Debian/configure.yml

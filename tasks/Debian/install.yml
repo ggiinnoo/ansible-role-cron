@@ -1,0 +1,12 @@
+---
+
+- name: Cron | Debian | Install required packages
+  apt:
+    name: "{{ item }}"
+    state: "present"
+  with_items:
+    - "{{ debianPackages }}"
+  when:
+    - item not in ansible_facts.packages
+  loop_control:
+    label: "Installing package: {{ item }}"
