@@ -4,9 +4,15 @@
   apt:
     name: "{{ item }}"
     state: "present"
+    update_cache: true
   with_items:
     - "{{ debianPackages }}"
   when:
     - item not in ansible_facts.packages
   loop_control:
     label: "Installing package: {{ item }}"
+
+- name: Cron | Debian | Unmask cron service
+  systemd:
+    name: "cron"
+    masked: false

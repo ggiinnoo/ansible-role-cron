@@ -3,9 +3,9 @@
 - name: redhatRestartCrond
   service:
     name: crond
-    state: restarted
+    state: started
 
 - name: debianRestartCrond
   service:
     name: cron
-    state: restarted
+    state: started
