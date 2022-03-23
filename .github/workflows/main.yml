@@ -4,31 +4,57 @@ name: Ansible role cron
 on:
   push:
     branches:
-     -  'release/**'
+     - 'release/**'
+     - 'feature/**'
+
+defaults:
+  run:
+    working-directory: 'ggiinnoo.cron'
 
 jobs:
-  build:
-    name: Build for centos
-    runs-on: ubuntu-16.04
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v2
+        with:
+          path: 'ggiinnoo.cron'
+
+      - name: Set up Python 3.
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install test dependencies.
+        run: pip3 install yamllint
+
+      - name: Lint code.
+        run: |
+          yamllint .
+  CentOS:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        centos: ['centos6', 'centos7', 'centos8']
+        os: ['centos6', 'centos7']
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v1
+      - uses: actions/checkout@v2
         with:
-          fetch-depth: 1
-      - name: Set up Python 2.7
-        uses: actions/setup-python@v1
-        with:
-          python-version: 2.7
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install yamllint molecule docker ansible-lint
-      - name: run molecule
+          path: "${{ github.repository }}"
+      - uses: gofrolist/molecule-action@v2
         env:
-          DOCKER_IMAGE: ${{ matrix.centos }}
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        run: molecule test
+          DOCKER_IMAGE: ${{ matrix.os }}
+
+  Debian:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: ['debian10', 'debian11']
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: "${{ github.repository }}"
+      - uses: gofrolist/molecule-action@v2
+        env:
+          DOCKER_IMAGE: ${{ matrix.os }}

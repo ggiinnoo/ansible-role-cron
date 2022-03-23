@@ -1,12 +1,11 @@
 ---
 
-# Check crond installation first
-- name: Run checks
-  include_tasks: checks.yml
+- name: Cron | Gather server Package information
+  package_facts:
+    manager: "auto"
 
-# run install when crond package cannot be found
-- name: Running installation file
-  include_tasks: install.yml
+- name: Cron | Include OS variables
+  include_vars: '{{ ansible_os_family }}.yml'
 
-- name: Run configure file
-  include_tasks: configure.yml
+- name: Cron | Include OS installation
+  include_tasks: '{{ ansible_os_family }}.yml'

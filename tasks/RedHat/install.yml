@@ -1,0 +1,16 @@
+---
+
+- name: Cron | Redhat | Install required packages
+  yum:
+    name: "{{ item }}"
+    state: "installed"
+  with_items:
+    - "{{ installCentos }}"
+  when:
+    - '"item" != ansible_facts.packages'
+  loop_control:
+    label: "Installing package: {{ item }}"
+
+# Initial include otherwise task fails
+- name: Cron | RedHat | Configure nginx
+  include_tasks: RedHat/configure.yml

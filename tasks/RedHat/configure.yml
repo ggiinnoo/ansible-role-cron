@@ -1,6 +1,6 @@
 ---
 
-- name: Set PATH env variable when defined
+- name: Cron | Redhat | Set PATH env variable when defined
   cron:
     name: PATH
     value: "{{ item.path }}"
@@ -8,8 +8,10 @@
     env: true
   loop: "{{ crons }}"
   when: item.path|default(false)
+  loop_control:
+    label: "Setting PATH variable: {{ item.path }}"
 
-- name: Set MAILTO env variable when defined
+- name: Cron | Redhat | Set MAILTO env variable when defined
   cron:
     name: MAILTO
     value: "{{ item.mailto }}"
@@ -17,8 +19,10 @@
     env: true
   loop: "{{ crons }}"
   when: item.mailto|default(false)
+  loop_control:
+    label: "Setting MAILTO variable: {{ item.mailto }}"
 
-- name: Set custom env variable's when defined
+- name: Cron | Redhat | Set custom env variable's when defined
   cron:
     name: "{{ item.1.name }}"
     value: "{{ item.1.value }}"
@@ -30,8 +34,10 @@
     - cronvars
     - flags:
       skip_missing: true
+  loop_control:
+    label: "Setting custom env variable: {{ item.1.name }}"
 
-- name: Set cronjobs
+- name: Cron | Redhat | Set cronjobs
   cron:
     user: "{{ item.0.name }}"
     job: "{% if item.1.flock|default(true) -%}/usr/bin/flock -w 0 '/tmp/cron_{{ item.0.name }}_{{ item.1.name|replace(' ', '_') }}.lock' -c '{{ item.1.job }}'{% else %}{{ item.1.job }}{% endif %}"
@@ -50,3 +56,5 @@
     - flags:
       skip_missing: true
   notify: restart crond
+  loop_control:
+    label: "Setting cron: '{{ item.1.name }}' for user: '{{ item.0.name }}'"
