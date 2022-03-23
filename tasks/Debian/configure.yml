@@ -49,7 +49,6 @@
     weekday: "{{ item.1.weekday|default('*') }}"
     state: "{{ item.1.state|default('present') }}"
     disabled: "{{ item.1.disabled|default(false) }}"
-    reboot: "{{ item.1.reboot|default(false) }}"
   with_subelements:
     - "{{ crons }}"
     - tasks
