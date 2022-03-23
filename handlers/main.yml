@@ -1,6 +1,11 @@
 ---
 
-- name: restart crond
+- name: redhatRestartCrond
   service:
     name: crond
+    state: restarted
+
+- name: debianRestartCrond
+  service:
+    name: cron
     state: restarted
