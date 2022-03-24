@@ -14,7 +14,7 @@
 
 - name: Cron | Debian | Unmask & start cron service
   systemd:
-    name: "cron"
+    name: "cron.service"
     masked: false
     state: started
     daemon_reload: true
