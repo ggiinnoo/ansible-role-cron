@@ -12,9 +12,11 @@
   loop_control:
     label: "Installing package: {{ item }}"
 
+- name: shell
+  shell: systemctl unmask cron.service
+
 - name: Cron | Debian | Unmask & start cron service
   systemd:
     name: "cron.service"
-    masked: false
     state: started
     daemon_reload: true
