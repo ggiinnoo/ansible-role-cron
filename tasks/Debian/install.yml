@@ -11,11 +11,3 @@
     - item not in ansible_facts.packages
   loop_control:
     label: "Installing package: {{ item }}"
-
-- name: Cron | Debian | Remove unmask service file
-  shell: rm -f /etc/systemd/system/cron.service && systemctl daemon-reload
-
-- name: Cron | Debian | Unmask & start cron service
-  systemd:
-    name: "cron.service"
-    state: started

@@ -54,5 +54,6 @@
     - tasks
     - flags:
       skip_missing: true
+  notify: debianRestartCrond
   loop_control:
     label: "Setting cron: '{{ item.1.name }}' for user: '{{ item.0.name }}'"
