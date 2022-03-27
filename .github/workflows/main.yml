@@ -45,12 +45,23 @@ jobs:
       - uses: gofrolist/molecule-action@v2
         env:
           DOCKER_IMAGE: ${{ matrix.os }}
-
   Debian:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         os: ['debian10', 'debian11']
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: "${{ github.repository }}"
+      - uses: gofrolist/molecule-action@v2
+        env:
+          DOCKER_IMAGE: ${{ matrix.os }}
+  Ubuntu:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: ['ubuntu20-04', 'ubuntu22-04']
     steps:
       - uses: actions/checkout@v2
         with:
